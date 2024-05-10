@@ -29,29 +29,8 @@ class customsource(basesource):
         # returns meta data for changeset rev
         c = super(customsource, self).getcommit(rev)
         logger.debug("commit = {}".format(c.__dict__,))
-        c.extra = c.extra.copy()
-
-        # use case: authormapsuffix
-        c.author = c.author.split(b'@', 1)[0] + b'@FreeBSD.org'
-
-        # use case: closemap
-        if rev in b'''
-            d643f67092ff123f6a192d52f12e7d123dae229f
-            9117c6561b0bd7792fa13b50d28239d51b78e51f
-            ''':
-            c.extra[b'close'] = b'1'
-
-        # use case: branchmap
-        if c.branch == b'default':
-            c.branch = b'trunk'
-
-        # use case: modify descriptions
-        c.desc = c.desc.title()
-
-        # use case: modify time
-        c.date = b'1971-02-03 04:05:06 +0000'
-
         return c
+    # End Def (getcommit)
 
 # End Class (customsource)
 
