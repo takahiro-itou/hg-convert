@@ -3,6 +3,12 @@ import hgext.convert.convcmd
 from hgext.convert.hg import mercurial_source as basesource
 #from hgext.convert.subversion import svn_source as basesource # to use subversion as source
 
+import logging
+
+logging.basicConfig(encoding='utf-8', level=logging.INFO)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 class customsource(basesource):
 
     def getchanges(self, version, full):
