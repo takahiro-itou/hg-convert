@@ -53,33 +53,8 @@ class customsource(basesource):
 
         return c
 
-    def getfile(self, name, rev):
-        # returns file content and flags for named file at revision
-        data, flags = super(customsource, self).getfile(name, rev)
-        if data is None or b'nuclear launch code' in data:
-            # the change is that the file is removed
-            return None, None
-            # raise IOError # for Mercurial < 3.2
+# End Class (customsource)
 
-        # use case: modify file data
-        if rev == b'f8b4ca9f6ffeb6b288be4c44e4d55458f867cd7c' and name == b'foo':
-            data = b'yo\nyo\n'
-
-        # use case: tagmap
-        if name == b'.hgtags':
-            data = b''.join(line[:41] + tagmap(line[41:]) + b'\n'
-                           for line in data.splitlines())
-
-        return data, flags
-
-    # use case: tagmap
-    def gettags(self):
-        return dict((tagmap(tag), node)
-                    for tag, node in super(customsource, self).gettags().items())
-
-# use case: tagmap
-def tagmap(tag):
-    return tag.replace(b'some', b'other')
 
 logger.debug(sys.version)
 
