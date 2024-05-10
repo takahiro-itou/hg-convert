@@ -21,11 +21,13 @@ class customsource(basesource):
         # returns (filename, rev) list and target, source dictionary
         # files not included in the list is just ignored
         files, copies, cleanp2 = super(customsource, self).getchanges(version, full)
+        logger.debug("files = {}".format(files,))
         return files, copies, cleanp2
 
     def getcommit(self, rev):
         # returns meta data for changeset rev
         c = super(customsource, self).getcommit(rev)
+        logger.debug("commit = {}".format(c.__dict__,))
         c.extra = c.extra.copy()
 
         # use case: authormapsuffix
