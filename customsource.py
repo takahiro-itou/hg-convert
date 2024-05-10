@@ -78,4 +78,6 @@ class customsource(basesource):
 def tagmap(tag):
     return tag.replace(b'some', b'other')
 
+logger.debug(sys.version)
+
 hgext.convert.convcmd.source_converters.append((b'customsource', customsource, b'branchsort'))
