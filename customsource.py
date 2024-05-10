@@ -13,7 +13,7 @@ logging.basicConfig(
     style='%',
 )
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 class customsource(basesource):
 
