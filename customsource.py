@@ -22,7 +22,8 @@ class customsource(basesource):
         # files not included in the list is just ignored
         files, copies, cleanp2 = super(customsource, self).getchanges(version, full)
         logger.debug("files = {}".format(files,))
-        return files, copies, cleanp2
+        files_new = [ x for x in files if x[0] != b'.hgsub' ]
+        return files_new, copies, cleanp2
 
     def getcommit(self, rev):
         # returns meta data for changeset rev
