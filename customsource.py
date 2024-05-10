@@ -4,8 +4,14 @@ from hgext.convert.hg import mercurial_source as basesource
 #from hgext.convert.subversion import svn_source as basesource # to use subversion as source
 
 import logging
+import sys
 
-logging.basicConfig(encoding='utf-8', level=logging.INFO)
+logging.basicConfig(
+    encoding='utf-8',
+    level=logging.INFO,
+    format='{asctime} {name} [{levelname}] {message}',
+    style='{',
+)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
