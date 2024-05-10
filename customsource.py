@@ -9,8 +9,8 @@ import sys
 logging.basicConfig(
     encoding='utf-8',
     level=logging.INFO,
-    format='{asctime} {name} [{levelname}] {message}',
-    style='{',
+    format='%(asctime)s %(name)s [%(levelname)s] %(message)s',
+    style='%',
 )
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
