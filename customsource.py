@@ -22,7 +22,15 @@ class customsource(basesource):
         # files not included in the list is just ignored
         files, copies, cleanp2 = super(customsource, self).getchanges(version, full)
         logger.debug("files = {}".format(files,))
-        files_new = [ x for x in files if x[0] != b'.hgsub' ]
+        files_new = []
+        files_append = files_new.append
+        for x in files:
+            if x[0] == b'.hgsub':
+                logger.info("Skipping {}".format(x,))
+            else:
+                files_append(x)
+            # End If
+        # Next (x)
         return files_new, copies, cleanp2
 
     def getcommit(self, rev):
