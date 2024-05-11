@@ -14,12 +14,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class customsource(basesource):
+class OmitSubRepos(basesource):
 
     def getchanges(self, version, full):
         # returns (filename, rev) list and target, source dictionary
         # files not included in the list is just ignored
-        files, copies, cleanp2 = super(customsource, self).getchanges(version, full)
+        files, copies, cleanp2 = super(OmitSubRepos, self).getchanges(version, full)
         logger.debug("files = {}".format(files,))
         files_new = []
         files_append = files_new.append
@@ -36,14 +36,16 @@ class customsource(basesource):
 
     def getcommit(self, rev):
         # returns meta data for changeset rev
-        c = super(customsource, self).getcommit(rev)
+        c = super(OmitSubRepos, self).getcommit(rev)
         logger.debug("commit = {}".format(c.__dict__,))
         return c
     # End Def (getcommit)
 
-# End Class (customsource)
+# End Class (OmitSubRepos)
 
 
 logger.debug(sys.version)
 
-hgext.convert.convcmd.source_converters.append((b'customsource', customsource, b'branchsort'))
+hgext.convert.convcmd.source_converters.append(
+    (b'OmitSubRepos', OmitSubRepos, b'branchsort')
+)
