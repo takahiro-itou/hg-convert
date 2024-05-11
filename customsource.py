@@ -27,6 +27,8 @@ class customsource(basesource):
         for x in files:
             if x[0] == b'.hgsub':
                 logger.info("Skipping {}".format(x,))
+            elif x[0] == b'.hgtags':
+                logger.info("Skipping {}".format(x,))
             else:
                 files_append(x)
             # End If
