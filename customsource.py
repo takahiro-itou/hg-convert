@@ -1,7 +1,6 @@
 import hgext.convert.convcmd
 
 from hgext.convert.hg import mercurial_source as basesource
-#from hgext.convert.subversion import svn_source as basesource # to use subversion as source
 
 import logging
 import sys
