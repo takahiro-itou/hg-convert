@@ -47,5 +47,5 @@ class OmitSubRepos(basesource):
 logger.debug(sys.version)
 
 hgext.convert.convcmd.source_converters.append(
-    (b'OmitSubRepos', OmitSubRepos, b'branchsort')
+    (b'hg-omit-subrepos', OmitSubRepos, b'branchsort')
 )
