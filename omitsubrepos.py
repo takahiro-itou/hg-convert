@@ -28,6 +28,8 @@ class OmitSubRepos(basesource):
                 logger.info("Skipping {}".format(x,))
             elif x[0] == b'.gitmodules':
                logger.info("Skipping {}".format(x,))
+            elif x[0].endswith(b'/.git'):
+               logger.info("Skipping {}".format(x,))
             elif x[0] == b'.hgtags':
                 logger.info("Skipping {}".format(x,))
             else:
